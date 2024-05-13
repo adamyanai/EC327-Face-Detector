@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Face Detection and Tracking</title>
+    <title>Filtered Face Detection and Tracking</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-color: #E76A4F;
+            background-color: #000000;
             color: #ffffff;
             font-family: Arial, sans-serif;
             align-items: center;
@@ -127,7 +127,7 @@
 
         .facesnap {
             font-size: 32px;
-            color: #E76A4F;
+            color: #ffffff;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -153,6 +153,28 @@
                 opacity: 0;
             }
         }
+
+        /* Style for the button */
+        .btn {
+            background-color: #ffffff;
+            border: 2px solid #ffffff;
+            color: #000000;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            opacity: 0; /* Initially hidden */
+		border-radius: 20px;
+        }
+
+        .btn:hover {
+            background-color: #ECE9E8;
+            color: #E76A4F;
+        }
     </style>
 </head>
 <body>
@@ -162,7 +184,7 @@
 
     <div class="overlay"></div>
 
-    <div class="facesnap">FaceSnap</div>
+    <div class="facesnap">InView.ai</div>
 
     <script>
         setTimeout(function() {
@@ -171,20 +193,31 @@
 
             var textContainer = document.querySelector('.text-container');
             textContainer.style.display = 'block';
+
+            var btns = document.querySelectorAll('.btn');
+            btns.forEach(btn => {
+                btn.style.opacity = '1'; // Show buttons after the slide fades out
+            });
         }, 8000);
     </script>
 
     <div class="video-container">
-	<br>
-	<br>
+        <br>
         <img src="{{ url_for('video_feed') }}" alt="Face Detection and Tracking" />
     </div>
 
     <div class="text-container">
-	<br>
+        <br>
         <h2>Face Detection and Tracking</h2>
-	<br>
+        <br>
         <p class="info-text">For the program to operate properly, ensure that your browser video<br><br>permissions are enabled and that your face is clearly visible.</p>
     </div>
+    
+    <!-- Button to navigate to the filter page -->
+<br>
+<center>
+    <a href="{{ url_for('filter') }}" class="btn">Inverted</a> 
+    <a href="{{ url_for('filtertwo') }}" class="btn">Thermal</a> 
+</center>
 </body>
 </html>
